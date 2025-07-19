@@ -36,12 +36,22 @@ def get_race_results(championship_year, round_number):
     Returns a pandas dataframe of the race results.
     """
     event = fastf1.get_event(championship_year, round_number)
+    print(f"Event: {event}")
     race_session = event.get_race()
+    print(f"Race Session: {race_session}")
     race_session.load()
     # print(race_session.results)
-    
-    return race_session.results
+    race_results = race_session.results
+    race_results["Event"] = race_session
+    race_results.drop(columns=["HeadshotUrl", "BroadcastName",
+                               "FirstName", "LastName",
+                               "Q1", "Q2", "Q3"], inplace=True)
+
+    return race_results
 
 if __name__ == "__main__":
 #     print(parse_number_of_rounds())
-    print(get_race_results(2024, 1))
+    results = get_race_results(2022, 5)
+    print(results.columns)
+    print(results.head())
+    results.to_csv(f"results.csv", index=False)
