@@ -46,6 +46,7 @@ def get_race_results(championship_year, round_number):
     race_results.drop(columns=["HeadshotUrl", "BroadcastName",
                                "FirstName", "LastName",
                                "Q1", "Q2", "Q3"], inplace=True)
+    print(race_results["Time"].dtype)
 
     return race_results
 
@@ -54,4 +55,4 @@ if __name__ == "__main__":
     results = get_race_results(2022, 5)
     print(results.columns)
     print(results.head())
-    results.to_csv(f"results.csv", index=False)
+    # results.to_csv(f"results.csv", index=False)
