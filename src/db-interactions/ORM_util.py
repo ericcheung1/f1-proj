@@ -1,7 +1,6 @@
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-from sqlalchemy import create_engine, String
+from sqlalchemy import String
 
-engine = create_engine("sqlite://db/f1-test.db", echo=True)
 
 class Base(DeclarativeBase):
     pass
