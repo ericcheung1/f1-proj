@@ -38,7 +38,7 @@ def get_race_results(championship_year, round_number):
     """
     event = fastf1.get_event(championship_year, round_number)
     weekend = pd.DataFrame(event).transpose().reset_index()
-    weekend.drop(columns=["F1ApiSupport"], inplace=True)
+    weekend.drop(columns=["F1ApiSupport", "index"], inplace=True)
 
     # print(f"Event: {event}")
     race_session = event.get_race()
@@ -63,4 +63,4 @@ if __name__ == "__main__":
     # print(results.head())
     print(race_weekend)
     # results.to_csv(f"results.csv", index=False)
-    # race_weekend.to_csv(f"weekend_info.csv", index=False)
+    race_weekend.to_csv(f"weekend_info.csv", index=False)
