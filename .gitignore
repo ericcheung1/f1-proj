@@ -1,6 +1,7 @@
 *.db
 results.csv
 weekend_info.csv
+roadmap.md
 
 # Byte-compiled / optimized / DLL files
 __pycache__

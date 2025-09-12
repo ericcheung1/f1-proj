@@ -58,9 +58,10 @@ def get_race_results(championship_year, round_number):
 
 if __name__ == "__main__":
 #     print(parse_number_of_rounds())
-    results, race_weekend = get_race_results(2022, 5)
+    results, race_weekend = get_race_results(2022, 6)
     # print(results.columns)
     # print(results.head())
     print(race_weekend)
     # results.to_csv(f"results.csv", index=False)
     race_weekend.to_csv(f"weekend_info.csv", index=False)
+    results.to_csv(f"results.csv", index=False)
