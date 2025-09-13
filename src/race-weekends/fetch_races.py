@@ -39,16 +39,17 @@ def get_race_results(championship_year, round_number):
     event = fastf1.get_event(championship_year, round_number)
     weekend = pd.DataFrame(event).transpose().reset_index()
     weekend.drop(columns=["F1ApiSupport", "index"], inplace=True)
-
+    print(weekend["OfficialEventName"].values)
     # print(f"Event: {event}")
     race_session = event.get_race()
-    print(f"Race Session: {race_session}")
+    # print(f"Race Session: {race_session}")
     race_session.load()
     # print(race_session.results)
     race_results = race_session.results
 
 
     race_results["Event"] = race_session
+    race_results["weekend_id"] = str(weekend["OfficialEventName"].values[0])
     race_results.drop(columns=["HeadshotUrl", "BroadcastName",
                                "FirstName", "LastName",
                                "Q1", "Q2", "Q3"], inplace=True)
@@ -59,9 +60,8 @@ def get_race_results(championship_year, round_number):
 if __name__ == "__main__":
 #     print(parse_number_of_rounds())
     results, race_weekend = get_race_results(2022, 6)
-    # print(results.columns)
-    # print(results.head())
-    print(race_weekend)
-    # results.to_csv(f"results.csv", index=False)
+    print(results.columns)
+    print(results.head())
+    # print(race_weekend)
     race_weekend.to_csv(f"weekend_info.csv", index=False)
     results.to_csv(f"results.csv", index=False)
