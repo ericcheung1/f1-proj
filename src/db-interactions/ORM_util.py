@@ -33,7 +33,7 @@ class Weekend_Info(Base):
     Session5Date: Mapped[int]
     Session5DateUtc: Mapped[int]
 
-    Results: Mapped[List["Race_Results"]] = relationship(back_populates="weekend")
+    Results: Mapped[List["Race_Results"]] = relationship()
 
 
 class Race_Results(Base):
@@ -57,4 +57,3 @@ class Race_Results(Base):
     Event: Mapped[str] = mapped_column(String(), primary_key=True)
 
     weekend_id: Mapped[str] = mapped_column(ForeignKey("Weekend_Info.OfficialEventName"))
-    weekend: Mapped["Weekend_Info"] = relationship(back_populates="Results")

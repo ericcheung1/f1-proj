@@ -39,7 +39,7 @@ def get_race_results(championship_year, round_number):
     event = fastf1.get_event(championship_year, round_number)
     weekend = pd.DataFrame(event).transpose().reset_index()
     weekend.drop(columns=["F1ApiSupport", "index"], inplace=True)
-    print(weekend["OfficialEventName"].values)
+    # print(event)
     # print(f"Event: {event}")
     race_session = event.get_race()
     # print(f"Race Session: {race_session}")
